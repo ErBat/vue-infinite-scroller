@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", '.vue'],
     alias: { vue: 'vue/dist/vue.esm.js' }
   },
   module: {
@@ -26,7 +26,10 @@ module.exports = {
       { 
         test: /\.tsx?$/,
         exclude: [/node_modules/], 
-        loader: "ts-loader" 
+        loader: "ts-loader",
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        } 
       },
       {
         test: /\.s[ac]ss$/i,
