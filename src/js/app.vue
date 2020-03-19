@@ -6,7 +6,7 @@
           :users="users"
         >
         </UserList>
-        <InfiniteScroll @loadMore="loadMore">
+        <InfiniteScroll @loadMore="loadMore" :loading="loading">
         </InfiniteScroll>
       </div>
     </div>
@@ -35,7 +35,6 @@
       axios.get('http://localhost:3000/')
         .then(function (response: {data: {user: User}}) {
           that.users.push(response.data.user);
-          console.log(that.loading)
           that.loading = false;
         })
         .catch(function (error: string) {
@@ -44,6 +43,7 @@
     }
 
     loadMore (){
+      if(this.loading) return;
       this.loading = true;
       this.fetchUser();
     }

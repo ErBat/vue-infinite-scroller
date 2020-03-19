@@ -1,6 +1,6 @@
 <template>
   <div>
-    <divv-if="loading">@</div>
+    <div v-if="loading" class="loader"></div>
   </div>
 </template>
 
@@ -21,10 +21,7 @@
         window.innerHeight === document.documentElement.offsetHeight;
 
         if (bottomOfWindow) {
-          if(this.loading) {
-            console.log("Waiting...");
-            return;
-          }
+          if(this.loading) return;
           this.$emit("loadMore");
         }
       }
