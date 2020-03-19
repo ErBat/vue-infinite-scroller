@@ -6,6 +6,8 @@
           :users="users"
         >
         </UserList>
+        <InfiniteScroll @loadMore="loadMore">
+        </InfiniteScroll>
       </div>
     </div>
   </div>
@@ -14,29 +16,20 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator'
   import UserList from './components/UserList.vue';
+  import InfiniteScroll from './components/InfiniteScroll.vue';
   import User from './types/user.ts';
   const axios = require('axios').default;
   
 
   @Component({
-    components: { UserList }
+    components: { UserList, InfiniteScroll }
   })
 
   export default class App extends Vue {
     private userEntity: User = new User("Ivan", "Ivanovich", "Morgenshtern");
     private users: User[] = [];
     private loading: Boolean = false;
-    scroll (): void {
-      var that = this;
-      window.onscroll = () => {
-        let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
 
-        if (bottomOfWindow) {
-          if(that.loading) return;
-          that.fetchUser();
-        }
-      }
-    }
     fetchUser() {
       var that = this;
       axios.get('http://localhost:3000/')
@@ -49,11 +42,16 @@
           that.loading = false;
         })
     }
+
+    loadMore (){
+      this.loading = true;
+      this.fetchUser();
+    }
+
     mounted() {
       for(var i = 0; i < 5; i++) {
         this.fetchUser();
       }
-      this.scroll();
     }
   }
 </script>

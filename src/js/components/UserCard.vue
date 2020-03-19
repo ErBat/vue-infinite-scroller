@@ -3,8 +3,7 @@
       <img :src="userEntity.picture.large">
       <div class="card-section">
         <h4>{{ userEntity.name.first }} {{ userEntity.name.last }}</h4>
-        <p><strong>Address</strong>: {{ userEntity.location.state }}, {{ userEntity.location.city }}, 
-        {{ userEntity.location.street }} {{ userEntity.location.building }}, {{ userEntity.location.zip }}</p>
+        <p><strong>Email</strong>: {{ userEntity.email }}</p>
       </div>
     </div>
 </template>
