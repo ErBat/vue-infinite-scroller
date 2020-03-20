@@ -1,5 +1,10 @@
 @import 'foundation-custom';
 
+.card img {
+  max-width: 128px;
+  margin: 0 auto;
+}
+
 .loader,
 .loader:after {
   border-radius: 50%;

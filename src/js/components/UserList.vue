@@ -2,7 +2,7 @@
   <div>
     <UserCard
       v-for="user in users"
-      :key="user.id"
+      :key="user.id.value"
       :userEntity="user"
     >
     </UserCard>

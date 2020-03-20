@@ -32,9 +32,9 @@
 
     fetchUser() {
       var that = this;
-      axios.get('http://localhost:3000/')
-        .then(function (response: {data: {user: User}}) {
-          that.users.push(response.data.user);
+      axios.get('https://randomuser.me/api/')
+        .then(function (response: { data: {results: User[]} }) {
+          that.users.push(response.data.results[0]);
           that.loading = false;
         })
         .catch(function (error: string) {
